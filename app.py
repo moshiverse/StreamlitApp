@@ -113,8 +113,6 @@ st.markdown(
     <style>
         .stApp { 
             background-color: #0A0A0F;
-            background-image: radial-gradient(circle at 50% 0%, #2a1b3d 0%, #0b0c10 70%);
-            background-attachment: fixed;
             color: #e0e0e0;
         }
         
@@ -355,7 +353,7 @@ grid_c1, grid_c2 = st.columns(2, gap="medium")
 
 with grid_c1:
     with st.container(border=True):
-        st.markdown("#### The Foundation")
+        st.markdown("#### Foundation")
         st.markdown(
             """
             <div class="justified-text">
@@ -372,7 +370,7 @@ with grid_c1:
 
 with grid_c2:
     with st.container(border=True):
-        st.markdown("#### The Tech Stack")
+        st.markdown("#### Tech Stack")
         st.markdown(
             """
             <div class="justified-text">
@@ -389,7 +387,7 @@ with grid_c2:
 
 st.write("")
 with st.container(border=True):
-    st.markdown("#### The Next Step")
+    st.markdown("#### Next Step")
     st.markdown(
         """
         As I prepare to graduate and enter the professional field, I am looking for 
