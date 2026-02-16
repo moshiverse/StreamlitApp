@@ -293,9 +293,17 @@ with c1:
 with c2:
     avatar_path = load_image("avatar.jpg")
     if avatar_path:
-        st.image(avatar_path, width=230)
+        st.markdown(
+            """
+            <div style="display:flex; justify-content:flex-end; margin-top:40px;">
+            """,
+            unsafe_allow_html=True
+        )
+        st.image(avatar_path, width=250)
+        st.markdown("</div>", unsafe_allow_html=True)
     else:
-        st.info("⚠️ Place 'avatar.jpg' in assets folder")
+        st.info("Place 'avatar.jpg' in assets folder")
+
 
 st.markdown("---")
 
