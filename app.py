@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL import Image
 from pathlib import Path
 
 st.set_page_config(
@@ -42,19 +41,10 @@ projects that allow me to practice and explore new ideas in programming.
 """
 
 SKILLS_DATA = {
-    "Programming / Web": [
-        "ReactJS", "Spring Boot", "Java", "C++", "HTML/CSS"
-    ],
-    "UI/UX / Design": [
-        "Figma", "Canva", "UI/UX Optimization", "UI Wireframes"
-    ],
-    "Databases & Tools": [
-        "MySQL", "PostgreSQL", "Git", "GitHub", "VS Code"
-    ],
-    "Other Skills": [
-        "Problem Solving", "Team Collaboration", "Communication",
-        "Time management", "Adaptability"
-    ]
+    "Programming / Web": ["ReactJS", "Spring Boot", "Java", "C", "C++", "Python", "HTML/CSS"],
+    "UI/UX / Design": ["Figma", "Canva", "UI/UX Optimization", "UI Wireframes", "Wordpress"],
+    "Databases & Tools": ["MySQL", "PostgreSQL", "Git", "GitHub", "VS Code"],
+    "Other Skills": ["Problem Solving", "Team Collaboration", "Communication", "Time management", "Adaptability"],
 }
 
 PROJECTS = [
@@ -62,32 +52,31 @@ PROJECTS = [
         "name": "BusMate",
         "type": "Bus Ticketing System",
         "desc": "A modern intercity bus ticketing system designed to make travel booking faster, safer, and more convenient.",
-        "tags": ["React", "Node.js", "CSS"],
+        "tags": ["JavaScript", "Java", "CSS", "Kotlin"],
         "img": "busmate.png",
         "links": {
-            "Live Demo": "https://busmate-onlineticketingsystem.onrender.com",
             "GitHub": "https://github.com/moshiverse/BusMate-OnlineTicketingSystem-IT342-G01-Group6"
-        }
+        },
     },
     {
         "name": "SPMP Evaluator",
         "type": "Academic Tool",
         "desc": "An automated evaluation platform that provides feedback, scoring, and task management capabilities for student projects.",
-        "tags": ["ReactJS", "JavaScript", "CSS"],
+        "tags": ["JavaScript", "Java", "CSS"],
         "img": "spmp.png",
         "links": {
             "GitHub": "https://github.com/lawas-tess/SPMP-Evaluator"
-        }
+        },
     },
     {
         "name": "CardWise",
         "type": "Study Aid",
         "desc": "Solves study issues by providing a digital platform where students can easily create, categorize, and review flashcards.",
-        "tags": ["React", "JavaScript", "CSS"],
+        "tags": ["JavaScript", "Java", "CSS"],
         "img": "cardwise.png",
         "links": {
             "GitHub": "https://github.com/myNameIsJoshua1/CardWise"
-        }
+        },
     },
 ]
 
@@ -97,14 +86,14 @@ EDUCATION = [
         "school": "Cebu Institute of Technology - University",
         "year": "2022 – Present",
         "sub": "Expected Graduation: May 2026",
-        "desc": "Relevant Coursework: Web Development, Data Management, UI/UX Design"
+        "desc": "Relevant Coursework: Web Development, Data Management, UI/UX Design",
     },
     {
         "degree": "AWS Academy Graduate",
         "school": "Cloud Foundations & Architecting",
         "year": "2025",
         "sub": "Amazon Web Services",
-        "desc": "Comprehensive training in cloud security, architecture, and core AWS services."
+        "desc": "Comprehensive training in cloud security, architecture, and core AWS services.",
     },
 ]
 
@@ -140,7 +129,7 @@ st.markdown(
         position: absolute;
         top: 0;
         left: 0;
-        right: 200px;
+        right: 0;
         bottom: 0;
         background: rgba(11, 12, 16, 0.95);
         backdrop-filter: blur(12px);
@@ -288,20 +277,23 @@ st.markdown('<div id="home" class="anchor-offset"></div>', unsafe_allow_html=Tru
 c1, c2 = st.columns([2.5, 1], gap="medium")
 
 with c1:
-    st.markdown(f"<div style='font-size: 3.5rem; font-weight: 800; line-height: 1.1;'>Hello, I'm Joseph</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size: 3.5rem; font-weight: 800; line-height: 1.1;'>Hello, I'm Joseph</div>", unsafe_allow_html=True)
     st.markdown(f"<h3 style='color: #a855f7; margin-bottom: 20px;'>{PROFILE['role']}</h3>", unsafe_allow_html=True)
     st.markdown(f"<div class='justified-text'>{PROFILE['about_short']}</div>", unsafe_allow_html=True)
-    
+
     st.write("")
-    cols = st.columns([1, 1, 1, 2.5])
-    with cols[0]: st.link_button("GitHub", PROFILE["links"]["GitHub"])
-    with cols[1]: st.link_button("LinkedIn", PROFILE["links"]["LinkedIn"])
-    with cols[2]: st.link_button("Email", PROFILE["links"]["Email"])
+    cols = st.columns(3, gap="small")
+    with cols[0]:
+        st.link_button("GitHub", PROFILE["links"]["GitHub"], use_container_width=True)
+    with cols[1]:
+        st.link_button("LinkedIn", PROFILE["links"]["LinkedIn"], use_container_width=True)
+    with cols[2]:
+        st.link_button("Email", PROFILE["links"]["Email"], use_container_width=True)
 
 with c2:
     avatar_path = load_image("avatar.jpg")
     if avatar_path:
-        st.image(avatar_path, width=230) 
+        st.image(avatar_path, width=230)
     else:
         st.info("⚠️ Place 'avatar.jpg' in assets folder")
 
@@ -330,8 +322,7 @@ st.markdown(
 )
 
 st.write("")
-
-st.markdown("<div class='section-header'>Autobiography</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-header'>My BSIT Journey</div>", unsafe_allow_html=True)
 
 row1_col1, row1_col2, row1_col3, row1_col4 = st.columns(4)
 with row1_col1:
@@ -348,63 +339,65 @@ with row1_col4:
         st.metric("Projects", "10+", "Completed/Ongoing")
 
 st.write("")
-
 grid_c1, grid_c2 = st.columns(2, gap="medium")
 
 with grid_c1:
     with st.container(border=True):
-        st.markdown("#### Foundation")
+        st.markdown("#### The Beginning")
         st.markdown(
             """
             <div class="justified-text">
-            My journey started at Cebu Institute of Technology - University, where I discovered my
-            interest in coding and technology. Over the past four years, I have built a solid 
-            foundation in Information Technology by learning programming, understanding how 
-            systems work, and studying the basic principles of software development. Through 
-            lectures, projects, and hands-on activities, I gradually improved my problem-solving
-            skills and gained confidence in building applications. These experiences helped me
-            understand how software is designed, developed, and improved over time.
+            When I first entered Cebu Institute of Technology - University as a BSIT student, I was unsure 
+            which area of technology I would eventually pursue. I only knew that I was curious about how 
+            applications worked behind the scenes. During my first year, I found programming challenging, 
+            especially when debugging errors that I did not fully understand. There were moments when projects 
+            felt overwhelming, but instead of giving up, I treated every mistake as part of the learning process.
+            <br><br>
+            Over time, those struggles became stepping stones. Through lectures, projects, and hands-on activities, 
+            I gradually improved my problem-solving skills and gained confidence in building applications. I began to 
+            appreciate not just writing code, but understanding how software is designed, structured, and improved over time.
             </div>
-            """, unsafe_allow_html=True
+            """,
+            unsafe_allow_html=True
         )
 
 with grid_c2:
     with st.container(border=True):
-        st.markdown("#### Tech Stack")
+        st.markdown("#### Discovering My Strengths")
         st.markdown(
             """
             <div class="justified-text">
-            I have spent the last three years improving my skills in full-stack development 
-            through hands-on projects and self-practice. I am comfortable working on both 
-            frontend and backend, using technologies such as Java, ReactJS, PostgreSQL, and Figma. 
-            These tools have helped me understand how different parts of a system connect and work together. 
-            By building and testing applications, I learned how to create user-friendly interfaces while also 
-            making sure the backend logic functions properly. These experiences strengthened my technical skills 
-            and helped me become more confident in developing complete, working systems.
+            As I progressed through my degree, I started exploring different areas of development and discovered a growing interest 
+            in full-stack systems. I enjoyed seeing how the frontend and backend connect to create a complete and functional application. 
+            Working with technologies such as Java, ReactJS, PostgreSQL, and Figma helped me understand how ideas are transformed into real 
+            systems.
+            <br><br>
+            Each project taught me something new, whether it was designing user interfaces, structuring databases, or solving unexpected technical 
+            issues. More than just learning tools, I learned how to think critically, adapt to challenges, and continuously improve my work.
             </div>
-            """, unsafe_allow_html=True
+            """,
+            unsafe_allow_html=True
         )
 
 st.write("")
 with st.container(border=True):
-    st.markdown("#### Next Step")
+    st.markdown("#### Looking Ahead")
     st.markdown(
         """
-        As I prepare to graduate and enter the professional field, I am looking for 
-        opportunities as a Full-Stack or Software Development Intern. I want to gain 
-        more real-world experience, improve my technical skills, and apply what I have 
-        learned in college to actual projects. I am eager to work with a team, learn from 
-        experienced developers, and continue growing both personally and professionally. 
-        My goal is to become a well-rounded developer who can contribute effectively to real-world
-        systems and solutions.
-        """
+        As I approach graduation, I reflect on how much I have grown, not only as a student, but as a future professional in the technology field. 
+        What started as curiosity has turned into a clear direction and purpose. I aim to continue developing my skills in software and full-stack 
+        development while gaining real-world experience that will challenge me further.
+        <br><br>
+        My goal is not only to build systems, but to build solutions that are useful, reliable, and meaningful. I look forward to the next chapter of 
+        my journey, where I can continue learning, contributing, and evolving as a developer.
+        """,
+        unsafe_allow_html=True
     )
 
 st.markdown('<div id="skills" class="anchor-offset"></div>', unsafe_allow_html=True)
 st.markdown("<div class='section-header'>Skills & Technologies</div>", unsafe_allow_html=True)
 
 tabs = st.tabs(list(SKILLS_DATA.keys()))
-
 for i, (category, skills) in enumerate(SKILLS_DATA.items()):
     with tabs[i]:
         pills_html = "".join([f"<span class='skill-pill'>{skill}</span>" for skill in skills])
@@ -419,32 +412,41 @@ for i, (category, skills) in enumerate(SKILLS_DATA.items()):
         )
 
 st.markdown("---")
-
 st.markdown('<div id="projects" class="anchor-offset"></div>', unsafe_allow_html=True)
 st.markdown("<div class='section-header'>Featured Projects</div>", unsafe_allow_html=True)
 
-p_cols = st.columns(3, gap="medium")
+search = st.text_input("Search projects", "")
+tag_options = sorted({t for p in PROJECTS for t in p["tags"]})
+selected_tags = st.multiselect("Filter", tag_options)
 
-for i, project in enumerate(PROJECTS):
-    with p_cols[i]:
+filtered_projects = []
+for p in PROJECTS:
+    text = f"{p['name']} {p['type']} {p['desc']}".lower()
+    matches_search = search.lower() in text if search else True
+    matches_tags = any(t in selected_tags for t in p["tags"]) if selected_tags else True
+    if matches_search and matches_tags:
+        filtered_projects.append(p)
+
+st.caption(f"Currently showing {len(filtered_projects)} project(s) for now")
+
+p_cols = st.columns(3, gap="medium")
+for i, project in enumerate(filtered_projects):
+    with p_cols[i % 3]:
         with st.container(border=True):
             img_path = load_image(project["img"])
             if img_path:
                 st.image(img_path, use_container_width=True)
-            
+
             st.subheader(project["name"])
             st.caption(project["type"])
             st.write(project["desc"])
-            
             st.markdown(" ".join([f"`{t}`" for t in project["tags"]]))
-            
+
             st.write("")
-            if "links" in project:
-                for label, url in project["links"].items():
-                    st.link_button(f"{label}", url, use_container_width=True)
+            for label, url in project.get("links", {}).items():
+                st.link_button(label, url, use_container_width=True)
 
 st.markdown("---")
-
 st.markdown('<div id="education" class="anchor-offset"></div>', unsafe_allow_html=True)
 st.markdown("<div class='section-header'>Education & Certifications</div>", unsafe_allow_html=True)
 
@@ -454,8 +456,8 @@ for edu in EDUCATION:
         with c_edu1:
             st.markdown(f"### {edu['degree']}")
             st.markdown(f"**{edu['school']}**")
-            st.caption(edu.get('sub', ''))
-            st.write(edu['desc'])
+            st.caption(edu.get("sub", ""))
+            st.write(edu["desc"])
         with c_edu2:
             st.markdown(f"<h4 style='text-align:right; color:#a855f7'>{edu['year']}</h4>", unsafe_allow_html=True)
 
