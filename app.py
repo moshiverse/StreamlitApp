@@ -299,7 +299,7 @@ with c1:
         cv_bytes = load_pdf_bytes("CV.pdf")
         if cv_bytes:
             st.download_button(
-                "(Download CV)",
+                "Download CV",
                 data=cv_bytes,
                 file_name="John_Joseph_Laborada_CV.pdf",
                 mime="application/pdf",
