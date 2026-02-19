@@ -266,6 +266,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+def load_pdf_bytes(pdf_name: str) -> bytes | None:
+    pdf_path = ASSETS_DIR / pdf_name
+    if pdf_path.exists():
+        return pdf_path.read_bytes()
+    return None
+
 def load_image(image_name):
     image_path = ASSETS_DIR / image_name
     if image_path.exists():
@@ -282,13 +288,27 @@ with c1:
     st.markdown(f"<div class='justified-text'>{PROFILE['about_short']}</div>", unsafe_allow_html=True)
 
     st.write("")
-    cols = st.columns(3, gap="small")
+    cols = st.columns(4, gap="small")
     with cols[0]:
         st.link_button("GitHub", PROFILE["links"]["GitHub"], use_container_width=True)
     with cols[1]:
         st.link_button("LinkedIn", PROFILE["links"]["LinkedIn"], use_container_width=True)
     with cols[2]:
         st.link_button("Email", PROFILE["links"]["Email"], use_container_width=True)
+    with cols[3]:
+        cv_bytes = load_pdf_bytes("CV.pdf")
+        if cv_bytes:
+            st.download_button(
+                "(Download CV)",
+                data=cv_bytes,
+                file_name="John_Joseph_Laborada_CV.pdf",
+                mime="application/pdf",
+                use_container_width=True
+            )
+        else:
+            st.button("CV (missing)", disabled=True, use_container_width=True)
+
+    
 
 with c2:
     avatar_path = load_image("avatar.jpg")
